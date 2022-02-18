@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3simples3webclientstoraged7lq5b3y8p9kr",
+  "bucketName": "simple-s3-webclient-storage-d7lq5b3y8p9kr",
+  "policyUUID": "f4c4081e",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

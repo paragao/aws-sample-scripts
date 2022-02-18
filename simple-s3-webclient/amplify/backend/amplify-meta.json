@@ -1,0 +1,116 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-simples3webclient-prod-141252-authRole",
+      "UnauthRoleArn": "arn:aws:iam::441224055073:role/amplify-simples3webclient-prod-141252-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::441224055073:role/amplify-simples3webclient-prod-141252-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-simples3webclient-prod-141252-deployment",
+      "UnauthRoleName": "amplify-simples3webclient-prod-141252-unauthRole",
+      "StackName": "amplify-simples3webclient-prod-141252",
+      "StackId": "arn:aws:cloudformation:us-east-1:441224055073:stack/amplify-simples3webclient-prod-141252/eb93ecf0-619e-11ec-809f-121c5b12bc97",
+      "AmplifyAppId": "d2my8qh6x1yb6n"
+    }
+  },
+  "api": {
+    "simples3webclient": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authsimples3webclient"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 30,
+                "description": "api key description"
+              }
+            },
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "5sp5lvh43bg7lfp6yzpadvmnpi",
+        "GraphQLAPIEndpointOutput": "https://ay5a53jjafecxfoq7bn2uw5pxe.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-crwz7hz7jbahlc77pwfzocoata"
+      },
+      "lastPushTimeStamp": "2021-12-22T14:08:41.505Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-simples3webclient-prod-141252-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apisimples3webclient"
+      }
+    }
+  },
+  "auth": {
+    "simples3webclient": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL",
+          "NAME"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "output": {
+        "UserPoolId": "us-east-1_94Lb944eY",
+        "AppClientIDWeb": "51u7o3u4rson1a8mg2t98j65hc",
+        "AppClientID": "56dqihfsaenjprpugfchdunj2g",
+        "IdentityPoolId": "us-east-1:df4b81d7-e590-4098-8093-59a8018cb425",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:441224055073:userpool/us-east-1_94Lb944eY",
+        "IdentityPoolName": "testAuthIdentityPool__prod",
+        "UserPoolName": "simples3webclient"
+      },
+      "lastPushTimeStamp": "2021-12-22T14:08:41.506Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-simples3webclient-prod-141252-deployment/amplify-cfn-templates/auth/simples3webclient-cloudformation-template.json",
+        "logicalId": "authsimples3webclient"
+      }
+    }
+  },
+  "storage": {
+    "s3simples3webclientstoraged7lq5b3y8p9kr": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "BucketName": "simple-s3-webclient-storage-d7lq5b3y8p9kr141252-prod",
+        "Region": "us-east-1"
+      },
+      "lastPushTimeStamp": "2021-12-22T14:08:41.518Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-simples3webclient-prod-141252-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3simples3webclientstoraged7lq5b3y8p9kr"
+      },
+      "lastPushDirHash": "JE5ablZ6rpRzpLIL5oBtJwA/apw="
+    }
+  }
+}

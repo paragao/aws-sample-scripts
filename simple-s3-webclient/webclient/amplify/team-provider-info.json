@@ -1,0 +1,20 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-simples3webclient-prod-141252-authRole",
+      "UnauthRoleArn": "arn:aws:iam::441224055073:role/amplify-simples3webclient-prod-141252-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::441224055073:role/amplify-simples3webclient-prod-141252-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-simples3webclient-prod-141252-deployment",
+      "UnauthRoleName": "amplify-simples3webclient-prod-141252-unauthRole",
+      "StackName": "amplify-simples3webclient-prod-141252",
+      "StackId": "arn:aws:cloudformation:us-east-1:441224055073:stack/amplify-simples3webclient-prod-141252/eb93ecf0-619e-11ec-809f-121c5b12bc97",
+      "AmplifyAppId": "d2my8qh6x1yb6n"
+    },
+    "categories": {
+      "auth": {
+        "simples3webclient": {}
+      }
+    }
+  }
+}

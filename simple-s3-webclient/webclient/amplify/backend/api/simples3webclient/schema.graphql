@@ -1,0 +1,8 @@
+type FileAccess @model @auth(rules: [{allow: private, operations: [create, read, update]}, {allow: owner}]) {
+  id: ID!
+  user: AWSEmail!
+  date: AWSDate!
+  time: AWSTime!
+  filename: String!
+}
+ 
