@@ -5,8 +5,8 @@ This repository has the objective of compiling a series of small projects that I
 # Projects
 
 ## List of contents
-### [Delete Amazon S3 buckets which are not empty](https://github.com/paragao/tree/main/delete-buckets)
+### [Delete Amazon S3 buckets which are not empty](https://github.com/paragao/aws-sample-scripts/tree/main/delete-buckets)
 Buckets can only be deleted if they are empty. This script will iterate through all objects and delete them. 
 
-### [Tracing Python applications using AWS XRay](https://github.com/paragao/tree/main/tracing-python-xray)
+### [Tracing Python applications using AWS XRay](https://github.com/paragao/aws-sample-scripts/tree/main/tracing-python-xray)
 Observability is important to identify possible performance bottleneck, improve customer experience, and identify problems/errors in your applications. 
