@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+# Samples AWS scripts to make your cloud journey easier
 
-You can use the [editor on GitHub](https://github.com/paragao/aws-sample-scripts/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This repository has the objective of compiling a series of small projects that I have worked on for customers and friends. Most of them will be interacting with the AWS services. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+List of projects is ever increasing and includes:
+ - Delete Amazon S3 buckets which are not empty
+ - Frontend that allows to upload/download files from Amazon S3
+ - Implement tracing on python/nodejs applications using AWS XRay
+ - Managing costs and resources using tags
 
-### Markdown
+## List of projects
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+These are the projects you can find in this repository. Instructions on how to implement those projects are provided in each of their specific folders. More details about the architecture and technologies used on those projects will be provided in the sections below.
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/paragao/aws-sample-scripts/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
