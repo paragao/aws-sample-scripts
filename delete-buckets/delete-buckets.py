@@ -151,6 +151,7 @@ def main(argv):
         print ("delete-buckets.py -b <bucket_name> -r <region> -p <profile>")
         sys.exit(2)
 
+	# TODO: accept a list of buckets instead of just one
     for opt, arg in opts:
         if opt in ("-b", "--bucket"):
             bucket = arg
