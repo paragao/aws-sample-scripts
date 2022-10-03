@@ -1,0 +1,16 @@
+node_modules/
+yarn.lock
+output.txt
+*.zip
+
+aws_xray_sdk*
+bin
+boto*
+dateutil
+jmespath*
+python_*
+s3*
+six*
+url*
+wrap*
+faker*
