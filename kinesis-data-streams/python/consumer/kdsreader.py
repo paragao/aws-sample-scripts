@@ -1,8 +1,7 @@
 from base64 import b64decode
 import json
-import boto3
-import base64
 import logging 
+import boto3
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.core import patch_all
 
@@ -17,8 +16,8 @@ table = ddb.Table('kinesis-ingest')
 @xray_recorder.capture('lambda main parsing kinesis data')
 def lambda_handler(event, context):
     for record in event['Records']:
-        preDec = base64.b64decode(record['kinesis']['data'])
-        dec = json.loads(str(base64.b64decode(preDec), "ascii"))
+        preDec = b64decode(record['kinesis']['data'])
+        dec = json.loads(str(b64decode(preDec), "ascii"))
 
         params = {
             'TableName': 'kinesis-ingest',
