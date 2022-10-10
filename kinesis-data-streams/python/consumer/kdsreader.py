@@ -1,6 +1,6 @@
 from base64 import b64decode
 import json
-import logging 
+import logging
 import boto3
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.core import patch_all
@@ -15,11 +15,12 @@ table = ddb.Table('kinesis-ingest')
 
 @xray_recorder.capture('lambda main parsing kinesis data')
 def lambda_handler(event, context):
+    '''
+    Lambda logic. Receives a kinesis payload and insert it into DynamoDB.
+    '''
     with table.batch_writer() as batch:
         for record in event['Records']:
-            preDec = b64decode(record['kinesis']['data'])
-            dec = json.loads(str(b64decode(preDec), "ascii"))
-
+            dec = json.loads(b64decode(record['kinesis']['data']))
             params = {
                 'TableName': 'kinesis-ingest',
                 'kinesisPartitionKey': record['kinesis']['partitionKey'],
@@ -38,5 +39,4 @@ def lambda_handler(event, context):
             )
 
     logger.info('batch items inserted \r')
-
     return 'data processed'

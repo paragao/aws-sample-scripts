@@ -1,65 +1,59 @@
 from datetime import datetime
 from random import randint
 import json
-import base64
 import logging
+import os
+import boto3
 from faker import Faker
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.core import patch_all
-import boto3
 
 # lib used to create fake data such as name, credit card number, etc
 fake = Faker()
 
-# logging utilities and AWS X-Ray patching
+# logging utilities and AWS X-Ray patching for observability
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-xray_recorder.configure(service='Kinesis ingest demo')
+xray_recorder.configure(service=os.environ['SERVICE_NAME'])
 patch_all()
 
-# create the boto3 clients to connect to the AWS services
+# create the boto3 clients to connect to the AWS services and get the stream name from a lambda environment variable
 kinesis = boto3.client('kinesis')
-firehose = boto3.client('firehose')
-
-# stream name - TODO: get from OS.ENVIRON
-firehose_stream_name = 'From-KDS-to-S3'
-kinesis_stream_name = 'My_Stream'
+kinesis_stream_name = os.environ['KINESIS_STREAM']
 
 # ingest data into the Amazon Kinesis Data Stream
 # input - records: object
 @xray_recorder.capture('## kinesis ingestion')
 def kinesis_ingest(records):
-    putRecords = []
+    '''
+    Receive an array of records and create an aggregated object. 
+    Interate on the array to create an unique partition key and normalize the data
+
+    params:
+        records: array of record
+    '''
+    normalized_records = []
     for record in records: 
-        data = base64.b64encode(json.dumps(record).encode("ascii"))
+        data = json.dumps(record).encode("ascii")
         partition = 'demo-' + str(randint(1000, 9999))
-        putRecords.append({
+        normalized_records.append({
             'Data': data,
             'PartitionKey': partition
         }) 
 
     kinesis_response = kinesis.put_records(
-        Records=putRecords,
+        Records=normalized_records,
         StreamName=kinesis_stream_name,
     )
 
     return kinesis_response
 
-@xray_recorder.capture('## firehose ingestion')
-def firehose_ingest(record):
-    data = base64.b64encode(json.dumps(record).encode("ascii"))
-    firehose_response = firehose.put_record(
-        DeliveryStreamName=firehose_stream_name,
-        Record={ 
-            'Data': data
-        }
-    )
-
-    return firehose_response
-
-if __name__ == "__main__":
+@xray_recorder.capture('## main logic')
+def main_logic(): 
+    '''
+    Main business logic. Create a set of records and send it to be ingested.
+    '''
     print('ingesting a serie of records into Kinesis Data Stream')
-    
     records = []
     for _ in range(100):
         record = {
@@ -77,12 +71,18 @@ if __name__ == "__main__":
             "date": datetime.now().isoformat(),
             "transaction_value": randint(5, 500)
         }
-        
         records.append(record)
 
-    xray_recorder.begin_segment('ingest data')
+    xray_recorder.begin_subsegment('ingest data')
     response = kinesis_ingest(records)
-    xray_recorder.end_segment()
+    xray_recorder.end_subsegment()
 
-    print('data ingested ')
-    
+    return response
+
+def lambda_handler(event, context):
+    '''
+    Lambda logic. Runs the business logic.
+    '''
+    main_logic()
+
+    return 'data ingested'
