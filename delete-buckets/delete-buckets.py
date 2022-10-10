@@ -26,7 +26,10 @@ def verify_region(s3, bucket):
     except:
         print("Error getting the bucket location")
 
-    constraint = response['LocationConstraint']
+    if (response['LocationConstraint'] == None):
+        return 'us-east-1'
+    else: 
+        return response['LocationConstraint']
 
     return constraint
 
@@ -168,8 +171,8 @@ def main(argv):
     s3 = session.client("s3") 
 
     constraint = verify_region(s3, bucket)
-
-    if (constraint != None):
+    
+    if (constraint != region):
         print("bucket not in the same region as requested\n LocationConstraint: {}".format(constraint['LocationConstraint']))
         sys.exit(1)
     else:
